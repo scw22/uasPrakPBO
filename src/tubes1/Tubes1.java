@@ -11,6 +11,6 @@ package tubes1;
  */
 public class Tubes1 {
     public static void main(String[] args) {
-        
+        System.out.println("123");
     } 
 }
