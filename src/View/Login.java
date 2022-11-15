@@ -20,12 +20,12 @@ import javax.swing.JTextField;
  *
  * @author user
  */
-public class MainMenu {
+public class Login {
     public static void main(String[] args) {
         new MainMenu();
     }
     
-    public MainMenu(){
+    public Login(){
         Font font1 = new Font("Serif", Font.BOLD, 20);
         
         JFrame frame = new JFrame("Login");
