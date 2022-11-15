@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  */
 public class Login {
     public static void main(String[] args) {
-        new MainMenu();
+        new Login();
     }
     
     public Login(){
