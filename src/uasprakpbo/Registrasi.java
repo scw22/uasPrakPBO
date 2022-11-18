@@ -1,5 +1,4 @@
 package uasprakpbo;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -88,7 +86,7 @@ public class Registrasi {
         nama.setBounds(150, 100, 300, 30);
         nama.setFont(font);
 
-        JLabel lblEmail = new JLabel("Email :");
+        JLabel lblEmail = new JLabel("Username :");
         lblEmail.setBounds(50, 150, 100, 40);
         lblEmail.setFont(font);
 
@@ -114,7 +112,7 @@ public class Registrasi {
 
         ArrayList<CategoryUser> listCategory = getCategoryList();
         String[] listCat = new String[listCategory.size()];
-        for (int i = 0; i < listCat.length; i++) {
+        for (int i = 1; i < listCat.length; i++) {
             listCat[i] = listCategory.get(i).getCategoryName();
         }
         JComboBox category = new JComboBox(listCat);

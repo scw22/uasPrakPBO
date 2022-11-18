@@ -20,16 +20,17 @@ import javax.swing.JTextField;
 
 public class Login {
 
+    User user;
     boolean loginStat = false;
 
-    public void tryLogin(String userName, String password) {
+    public void tryLogin(String userName, String userPassword) {
         DatabaseHandler con = new DatabaseHandler();
         con.connect();
         try {
             java.sql.Statement stat = con.con.createStatement();
             ResultSet result = stat.executeQuery("select * from user where userName='" + userName + "'");
             if (result.next()) {
-                if (password.equals(result.getString("password"))) {
+                if (userPassword.equals(result.getString("userPassword"))) {
                     loginStat = true;
                     JOptionPane.showMessageDialog(null, "Login Berhasil");
                 } else {
@@ -43,13 +44,14 @@ public class Login {
         }
     }
 
-    public Login() throws IOException {
+    public Login() {
         try {
-            Font txt = new Font("SERIF", Font.PLAIN, 18);
+            Font txt = new Font("Serif", Font.PLAIN, 18);
 
             JFrame frame = new JFrame("Log In");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(500, 350);
+
             BufferedImage foto = ImageIO.read(new File("D:\\FOTO\\paaaa.jpg"));
             Image fixedFoto = foto.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             JLabel photos = new JLabel(new ImageIcon(fixedFoto));
@@ -71,19 +73,6 @@ public class Login {
             password.setBounds(150, 200, 300, 30);
             password.setFont(txt);
 
-            JButton logBtn = new JButton("Login");
-            logBtn.setBounds(200, 300, 100, 50);
-            logBtn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    tryLogin(username.getText(), password.getText());
-                    if (loginStat) {
-                        frame.dispose();
-                        new LihatData();
-                    }
-                }
-            });
-
             JButton backBtn = new JButton("Back");
             backBtn.setBounds(0, 0, 80, 30);
             backBtn.addActionListener(new ActionListener() {
@@ -91,6 +80,18 @@ public class Login {
                 public void actionPerformed(ActionEvent e) {
                     frame.dispose();
                     new MenuUtama();
+                }
+            });
+            JButton logBtn = new JButton("Login");
+            logBtn.setBounds(200, 300, 100, 50);
+            logBtn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    tryLogin(user.getUserName(), user.getUserPassword());
+                    if (loginStat) {
+                        frame.dispose();
+                        new LihatData();
+                    }
                 }
             });
 
@@ -104,8 +105,9 @@ public class Login {
             frame.setLayout(null);
             frame.setVisible(true);
 
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan!!!");
+        } catch (IOException ae) {
+            JOptionPane.showMessageDialog(null, "Eror!");
         }
+
     }
 }

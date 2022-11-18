@@ -21,11 +21,7 @@ public class MenuUtama {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frame.dispose();
-                try {
-                    new Login();
-                } catch (IOException ex) {
-                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new Login();
             }
         });
         JButton regBtn = new JButton("Registrasi Pengguna Baru");

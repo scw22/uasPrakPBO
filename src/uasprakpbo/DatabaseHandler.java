@@ -14,7 +14,7 @@ public class DatabaseHandler {
 
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
-//    private String url = "jdbc:mysql://localhost/db_uas_1121051";
+    //private String url = "jdbc:mysql://localhost/db_uas_1121051";
     private String url = "jdbc:mysql://localhost/db_uas_1121051?serverTimezone=" + TimeZone.getDefault().getID();
     private String username = "root";
     private String password = "";
