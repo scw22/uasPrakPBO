@@ -1,69 +1,95 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
-
-import java.awt.Color;
+import Controller.LoginController;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-
-/**
- *
- * @author user
- */
+import javax.swing.*;
 public class Login {
-    public static void main(String[] args) {
-        new Login();
-    }
-    
-    public Login(){
-        Font font1 = new Font("Serif", Font.BOLD, 20);
-        
-        JFrame frame = new JFrame("Login");
-        frame.setSize(600, 310);
+    JFrame frame = new JFrame("Login");
+
+    public Login(String tipeUser) {
+        LoginController controller = new LoginController();
+        frame.setSize(600, 380);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        Font font1 = new Font("Serif", Font.PLAIN, 20);
+
+        //label judul
         JLabel judul = new JLabel("Login");
-        judul.setBounds(230, 10, 400, 60);
-        judul.setFont(new Font("Serif", Font.BOLD, 45));
-        
-        JLabel usernameLabel = new JLabel("Username");
-        usernameLabel.setBounds(30, 100, 200, 30);
-        usernameLabel.setFont(font1);
-        
-        JTextField user = new JTextField();
-        user.setBounds(150, 100, 300, 30);
-        user.setFont(font1);
-        
+        judul.setBounds(240, 5, 500, 60);
+        judul.setFont(new Font("Serif", Font.BOLD, 35));
+
+        //label username
+        JLabel userNameLabel = new JLabel("Username");
+        userNameLabel.setBounds(100, 100, 90, 40);
+        userNameLabel.setFont(font1);
+
+        //textfield username
+        JTextField username = new JTextField();
+        username.setBounds(240, 105, 240, 30);
+        username.setFont(font1);
+
+        //label password
         JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(30, 150, 200, 30);
+        passwordLabel.setBounds(100, 140, 90, 40);
         passwordLabel.setFont(font1);
-        
-        JTextField password = new JTextField();
-        password.setBounds(150, 150, 300, 30);
-        password.setFont(font1);
-        
-        JButton login = new JButton("LOGIN");
-        login.setBounds(235, 210, 100, 30);
-        login.setFont(new Font("Serif", Font.PLAIN, 20));
-                
+
+        //pass
+        JPasswordField pass = new JPasswordField();
+        pass.setBounds(240, 145, 240, 30);
+        pass.setFont(font1);
+
+        JButton submit = new JButton("Login");
+        submit.setBounds(300, 200, 180, 50);
+        submit.setFont(font1);
+        submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        submit.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String result = controller.LoginController(tipeUser,username.getText(),pass.getText());
+                if(result.equals("Login Berhasil!")){
+                    frame.dispose();
+                    JOptionPane.showMessageDialog(null,result);
+                    //masukin tujuan dibawah
+                    
+                }else if(result.equals("Password Salah!")){
+                    JOptionPane.showMessageDialog(null,result);
+                    pass.setText("");
+                    pass.requestFocus();
+                }else{
+                    JOptionPane.showMessageDialog(null,result);
+                    username.setText("");
+                    pass.setText("");
+                    username.requestFocus();
+                }
+            }  
+        });
+
+        JButton back = new JButton("Kembali");
+        back.setBounds(100, 200, 180, 50);
+        back.setFont(font1);
+        back.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        back.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                frame.dispose();
+                new ChooseLogin();
+            } 
+        });
+
         frame.add(judul);
-        frame.add(usernameLabel);
-        frame.add(user);
+        frame.add(userNameLabel);
+        frame.add(username);
         frame.add(passwordLabel);
-        frame.add(password);
-        frame.add(login);
+        frame.add(pass);
+        frame.add(back);
+        frame.add(submit);
         frame.setLayout(null);
         frame.setVisible(true);
+    }
+
+    public Login() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

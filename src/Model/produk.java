@@ -9,9 +9,9 @@ package Model;
  * @author user
  */
 public class produk implements statusProduk {
-    String nama_barang;
-    String berat;
-    int harga;
+    private String nama_barang;
+    private String berat;
+    private int harga;
 
     public produk(String nama_barang, String berat, int harga) {
         this.nama_barang = nama_barang;

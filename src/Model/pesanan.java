@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * @author user
  */
 public class pesanan {
-    int pesanan;
-    statusPembayaran statusPembayaran;
-    statusPengiriman statusPengiriman;
-    ArrayList<produk> produk;
+    private int pesanan;
+    private statusPembayaran statusPembayaran;
+    private statusPengiriman statusPengiriman;
+    private ArrayList<produk> produk;
 
     public int getPesanan() {
         return pesanan;
